@@ -20,7 +20,7 @@ def test_string_only_model():
     eq_(a.time, "now", "Model data doesn't match - getattr")
     eq_(a["time"], "now", "Model data doesn't match - getitem")
 
-    b = redis_model.redis.get("test:test:time")
+    b = redis_model.redis.get("test:test3:time")
 
     eq_(b, "now", "Raw redis data doesn't match")
 
