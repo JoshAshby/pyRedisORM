@@ -3,24 +3,16 @@ RedisORM v0.1.0 - DEV
 
 Build status - Master:
 
-
 .. image:: https://secure.travis-ci.org/JoshAshby/pyRedisORM.png?branch=master
         :target: http://travis-ci.org/JoshAshby/pyRedisORM
-
-
-Coverage - Master:
-
 
 .. image:: https://coveralls.io/repos/JoshAshby/pyRedisORM/badge.png
         :target: https://coveralls.io/r/JoshAshby/pyRedisORM
 
-
 Build status - Dev:
-
 
 .. image:: https://secure.travis-ci.org/JoshAshby/pyRedisORM.png?branch=dev
         :target: http://travis-ci.org/JoshAshby/pyRedisORM
-
 
 TODO: What is this?
 
@@ -42,16 +34,6 @@ A Few Minor Warnings
 
 Documentation
 =============
-
-Installation:
--------------
-
-This doesn't actually work yet...
-
-::
-
-    pip install RedisORM
-
 For more information, a short quick start, and information about running the
 test suit, please `read the documentation
 <https://pyredisorm.readthedocs.org/en/latest/>`__ kindly hosted

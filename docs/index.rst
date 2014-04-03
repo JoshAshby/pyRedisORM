@@ -3,9 +3,11 @@ RedisORM v0.1.0 - DEV
 
 Build status - Master:
 
-
 .. image:: https://secure.travis-ci.org/JoshAshby/pyRedisORM.png?branch=master
         :target: http://travis-ci.org/JoshAshby/pyRedisORM
+
+.. image:: https://coveralls.io/repos/JoshAshby/pyRedisORM/badge.png
+        :target: https://coveralls.io/r/JoshAshby/pyRedisORM
 
 .. image:: https://pypip.in/v/RedisORM/badge.png
     :target: https://crate.io/packages/RedisORM/
@@ -15,24 +17,21 @@ Build status - Master:
     :target: https://crate.io/packages/RedisORM/
     :alt: Number of PyPI downloads
 
-
 Build status - Dev:
-
 
 .. image:: https://secure.travis-ci.org/JoshAshby/pyRedisORM.png?branch=dev
         :target: http://travis-ci.org/JoshAshby/pyRedisORM
 
-TODO: What is this?
-
-Unittests are (will be soon, actually) included, and the code should be `PEP8 
-<http://www.python.org/dev/peps/pep-0008/>`__ compliant(or, will be after I get
-dev settled down a bit.). The tests are automatically ran each commit,
-thanks to `travis-ci.org <http://travis-ci.org>`__ and this documentation
+There is a small test suite provided. It requires an actuall Redis install that
+is up and running. If you want too change the address then please take a look
+in the test directory. The tests are automatically ran each commit,
+thanks to `travis-ci.org <http://travis-ci.org>`__ and coverage is provided by
+`Coveralls.io <http://coveralls.io>`__ and this documentation
 is kindly hosted and automatically rebuilt by `readthedocs.org
 <http://readthedocs.org>`__.
 
-Gittip if you like the work I do and would consider a small donation to help
-fund me and this project:
+If you like the work I do and find this project helpful, please consider a
+small donation to help fund me and this project:
 
 .. raw:: html
 
@@ -55,6 +54,11 @@ A Few Minor Warnings
    major version signifies that backwards compatibility will most likely be
    broken.
 
+Quick start
+-----------
+
+.. automodule:: redisORM.redis_model
+
 Contributing
 ------------
 
@@ -63,32 +67,31 @@ All code for this can be found online at
 If something is broken, or a feature is missing, please submit a pull request
 or open an issue. Most things I probably won't have time to get around to
 looking at too deeply, so if you want it fixed, a pull request is the way
-to go. In your pull request please provide an explaniation as to what your
-request is for, and what benefit it provides.
+to go. In your pull request please provide an explanation as to what your
+request is for, and what benefit it provides. Also, please try to match the
+style of the code, or make sure your code is nearly all PEP8 compliant just to
+maintain code consistency.
 
-Besides that, I'm releasing this under the MIT License as found in the
+Besides that, this project is licensed under the MIT License as found in the
 ``LICENSE.txt`` file. Enjoy!
 
 Documentation
 =============
 
-Installation:
--------------
-
-
-::
-
-    python setup.py dev
-
-
-Classes:
---------
+Exceptions
+----------
 
 .. autoclass:: redisORM.redis_model.RedisORMException
+
+Model Class
+-----------
 
 .. autoclass:: redisORM.redis_model.RedisModel
     :members:
     :undoc-members:
+
+Helper Classes
+--------------
 
 .. autoclass:: redisORM.redis_model.RedisList
     :members:
@@ -97,18 +100,3 @@ Classes:
 .. autoclass:: redisORM.redis_model.RedisKeys
     :members:
     :undoc-members:
-
-
-Doc Contents
-------------
-
-.. toctree::
-   :maxdepth: 4
-
-
-Indices and tables
-~~~~~~~~~~~~~~~~~~
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

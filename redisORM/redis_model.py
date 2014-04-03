@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 """
-TODO: DOC THIS. Yes this. All of this. Everything. DOC IT! DOC IT NOAW!
-
-Provides a basic Object mapper for groups of Redis keys.
+This module provides a basic object mapper for groups of Redis keys.
 
 .. note::
     The model stores all its data with a Redis key structure like so:
@@ -86,7 +84,7 @@ class RedisKeys(object):
         :raises RedisORMException: If no key was provided.
         """
         self._data = dict()
-        self.conn = conn or redis
+        self.conn = conn
         self.namespace = namespace # Key prefix
         self.key = key
 
