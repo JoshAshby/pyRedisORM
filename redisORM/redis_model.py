@@ -2,13 +2,41 @@
 """
 TODO: DOC THIS. Yes this. All of this. Everything. DOC IT! DOC IT NOAW!
 
+Provides a basic Object mapper for groups of Redis keys.
+
 .. note::
-    The model stores all its data with a redis key structure like so:
+    The model stores all its data with a Redis key structure like so:
     namespace:key:part
 
     Where namespace is the key prefix, key is the actual name or id of this
     object and part is the specific part of the model which that whole key
     stores.
+
+Basic use is like so:
+
+>>> import redis
+>>> from redisORM import RedisModel
+>>> redis_instance = redis.StrictRedis("localhost", db=0)
+
+Lets create a new model:
+
+>>> sample1 = RedisModel(namespace="test", key="sample1", conn=redis_instance)
+>>> sample1 #doctest: +ELLIPSIS
+<RedisModel.RedisModel ...>
+
+And now lets add some data to it. Two strings and a list:
+
+>>> sample1.name = "Ludwig Van Beethoven"
+>>> sample1["era"] = "Classical" # you can also treat it like a dictionary (with some missing features)
+>>> sample1.famous_works = ["Symphony No.5", "Symphony No.7", "Symphony No.9"] # Lists have limited support also
+
+Along with setting data you can also access data, both like an object property
+or by using the dictionary index style:
+
+>>> sample1["name"]
+'Ludwig Van Beethoven'
+>>> sample1.era
+'Classical'
 """
 
 redis = None
@@ -36,13 +64,13 @@ class RedisKeys(object):
     def __init__(self, key, namespace="", conn=None):
         """
         Creates a new `dict` like object which is used to actually store data in
-        redis. Under all normal circumstances, you should not need to use this
+        Redis. Under all normal circumstances, you should not need to use this
         class in any way shape or form, as it is the backing datastore for the
         model.
 
-        :param key: The key section of the redis key.
+        :param key: The key section of the Redis key.
         :param namespace: The key namespace.
-        :param conn: The redis connection to use.
+        :param conn: The Redis connection to use.
 
         :raises RedisORMException: If no key was provided.
         """
@@ -244,10 +272,9 @@ class RedisModel(object):
     """
     _data = None
     key = None
-    conn = None #: The redis connection which this should use.
+    conn = None
+    namespace = None
     _protected_items = [] #: Object properties which shouldn't be stored in redis.
-
-    namespace = ""  #: The prefix which should be used for all keys in this model
 
     def __init__(self, namespace=None, key=None, conn=None, **kwargs):
         """
@@ -263,8 +290,8 @@ class RedisModel(object):
             was a problem while creating the :py:class:`.RedisKeys` instance for
             the interal `_data`
         """
-        self.namespace = self.namespace or namespace
-        self.key = key
+        self.namespace = namespace or ""
+        self.key = key or ""
 
         self.conn = conn or redis
         if not self.conn:
