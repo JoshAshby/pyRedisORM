@@ -12,7 +12,7 @@ install:
   - pip install . --use-mirrors
   - pip install coveralls
 
-script: coverage run --source=redisORM nosetests
+script: nosetests
 
 after_success:
   coveralls
