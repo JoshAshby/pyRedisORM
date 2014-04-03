@@ -24,11 +24,12 @@ Build status - Dev:
 
 TODO: What is this?
 
-Unittests are included, and the code should be `PEP8 
-<http://www.python.org/dev/peps/pep-0008/>`__ compliant. The tests are
-automatically ran each commit, thanks to `travis-ci.org
-<http://travis-ci.org>`__ and this documentation is kindly hosted and
-automatically rebuilt by `readthedocs.org <http://readthedocs.org>`__.
+Unittests are (will be soon, actually) included, and the code should be `PEP8 
+<http://www.python.org/dev/peps/pep-0008/>`__ compliant(or, will be after I get
+dev settled down a bit.). The tests are automatically ran each commit,
+thanks to `travis-ci.org <http://travis-ci.org>`__ and this documentation
+is kindly hosted and automatically rebuilt by `readthedocs.org
+<http://readthedocs.org>`__.
 
 Gittip if you like the work I do and would consider a small donation to help
 fund me and this project:
@@ -74,16 +75,20 @@ Documentation
 Installation:
 -------------
 
+
 ::
 
-    pip install RedisORM
+    python setup.py dev
 
+
+Classes:
+--------
+
+.. autoclass:: redisORM.redis_model.RedisORMException
 
 .. autoclass:: redisORM.redis_model.RedisModel
     :members:
     :undoc-members:
-
-.. autoclass:: redisORM.redis_model.RedisORMException
 
 .. autoclass:: redisORM.redis_model.RedisList
     :members:

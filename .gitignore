@@ -27,6 +27,7 @@ dist
 MANIFEST
 cover/
 .coverage
+*.egg-info/
 
 # Compiled source #
 ###################

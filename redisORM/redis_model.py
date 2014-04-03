@@ -1,25 +1,51 @@
 #!/usr/bin/env python
 """
 TODO: DOC THIS. Yes this. All of this. Everything. DOC IT! DOC IT NOAW!
+
+.. note::
+    The model stores all its data with a redis key structure like so:
+    namespace:key:part
+
+    Where namespace is the key prefix, key is the actual name or id of this
+    object and part is the specific part of the model which that whole key
+    stores.
 """
+
 redis = None
 """
 Global RedisModel connection which can be set before hand to avoid passing a
 redis instance around everywhere all the time.
 """
-# Redis key structure: Namespace:key:part
 
 
-class RedisORMException(Exception): pass
+class RedisORMException(Exception):
+    """
+    The general exception class which is raised by this module. Nothing special.
+    """
 
 
 class RedisKeys(object):
     """
     Where the realtime syncing and updating takes place.
 
+    A `dict` like object which is used as the backing data store for
+    :py:class:`.RedisModel`.
+
     Aka: The Source of Magic
     """
     def __init__(self, key, namespace="", conn=None):
+        """
+        Creates a new `dict` like object which is used to actually store data in
+        redis. Under all normal circumstances, you should not need to use this
+        class in any way shape or form, as it is the backing datastore for the
+        model.
+
+        :param key: The key section of the redis key.
+        :param namespace: The key namespace.
+        :param conn: The redis connection to use.
+
+        :raises RedisORMException: If no key was provided.
+        """
         self._data = dict()
         self.conn = conn or redis
         self.namespace = namespace # Key prefix
@@ -36,6 +62,10 @@ class RedisKeys(object):
                 self.get(part)
 
     def delete(self):
+        """
+        Deletes all the keys from redis along with emptying the objects
+        internal `_data` dict, then deleting itself at the end of it all.
+        """
         redis_search_key = ":".join([self.namespace, self.key, "*"])
         keys = self.conn.keys(redis_search_key)
         if keys:
@@ -47,6 +77,13 @@ class RedisKeys(object):
         del self
 
     def get(self, part):
+        """
+        Retrieves a part of the model from redis and stores it.
+
+        :param part: The part of the model to retrieve.
+        :raises RedisORMException: If the redis type is different from string
+            or list (the only two supported types at this time.)
+        """
         redis_key = ':'.join([self.namespace, self.key, part])
 
         objectType = self.conn.type(redis_key)
@@ -89,10 +126,16 @@ class RedisKeys(object):
 
 class RedisList(object):
     """
-    Attempts to emulate a python list, while storing the list
-    in conn.
+    Attempts to emulate a python `list`, while backing the list in redis. This
+    supports most of the common `list` functions, except as noted.
 
-    Missing the sort and reverse functions currently.
+    Generally speaking, you won't have to create an instance of this class,
+    however if you are working with a `list` then this is the class you'll get
+    back, not a `list` class.
+
+    .. note::
+        Most notably, this is currently missing the sort and reverse functions.
+
     """
     def __init__(self, key, conn, start=[], reset=False):
         self._list = []
@@ -190,23 +233,33 @@ class RedisList(object):
 
 class RedisModel(object):
     """
-    Emulates a python object for the data stored in the collection of keys which
+    Emulates a python `object` for the data stored in the collection of keys which
     match this models, in Redis. Raw data from the redis is stored in
-    _data to keep the objects namespace clean. For more information look at how
-    _get() and _set() function in order to keep the namespace cleaner but still
-    provide easy access to data.
+    `_data` which is a :py:class:`.RedisKeys` instance. This allows for the
+    black magic which makes this class store changes in realtime to redis.
 
-    This object has a __repr__ method which can be used with print or logging
-    statements. It will give the id and a representation of the internal _data
-    dict for debugging purposes.
+    This object has a `__repr__` method which can be used with print or logging
+    statements. It will give the id and a representation of the internal `_data`
+    :py:class:`.RedisKeys` for debugging purposes.
     """
-    conn = None
-    _protected_items = []
+    conn = None #: The redis connection which this should use.
+    _protected_items = [] #: Object properties which shouldn't be stored in redis.
 
     namespace = ""  #: The prefix which should be used for all keys in this model
 
     def __init__(self, namespace=None, key=None, conn=None, **kwargs):
         """
+        TODO: Me
+
+        :param namespace: The key prefix which should be used.
+        :param key: The key or id of this object.
+        :param conn: The redis connection to use. This can also be set on the
+            class instance, or on the module level.
+        :param kwargs: Any additional data which should be stored. This is used
+            for creating a new object in redis.
+        :raised RedisORMException: If no connection was supplied, or if there
+            was a problem while creating the :py:class:`.RedisKeys` instance for
+            the interal `_data`
         """
         self.namespace = self.namespace or namespace
         self.key = key
