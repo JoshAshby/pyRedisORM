@@ -30,6 +30,7 @@ Currently it just supports strings and lists but I plan on supporting more later
     url='https://github.com/JoshAshby/pyRedisORM/',
     license='MIT',
     packages=['redisORM'],
+    install_requires=['redis'],
     zip_safe=True,
     test_suite='nose.collector',
     tests_require=['nose'],
