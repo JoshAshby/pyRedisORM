@@ -7,20 +7,13 @@ Build status - Master:
 .. image:: https://secure.travis-ci.org/JoshAshby/pyRedisORM.png?branch=master
         :target: http://travis-ci.org/JoshAshby/pyRedisORM
 
-.. image:: https://pypip.in/v/RedisORM/badge.png
-    :target: https://crate.io/packages/RedisORM/
-    :alt: Latest PyPI version
-
-.. image:: https://pypip.in/d/RedisORM/badge.png
-    :target: https://crate.io/packages/RedisORM/
-    :alt: Number of PyPI downloads
-
 
 Build status - Dev:
 
 
 .. image:: https://secure.travis-ci.org/JoshAshby/pyRedisORM.png?branch=dev
         :target: http://travis-ci.org/JoshAshby/pyRedisORM
+
 
 TODO: What is this?
 
@@ -31,12 +24,6 @@ A Few Minor Warnings
    isn't even my major; I'm working towards an Electrical and Computer
    Engineering degree, so not only do I have limited time to keep this
    maintained, but I also probably won't write the best code ever.
-#. This takes some influence from the `Python Django RedisDB 
-   ORM <https://github.com/dparlevliet/rwrapper>`__ and other ORM systems,
-   however I haven't really followed a standard pattern for the interface
-   for this module. If someone wants to make this more standardized feel
-   free to, and just submit a pull request, I'll look it over and probably
-   will give it the go ahead. For more information see below.
 #. This is a very early release, things might break, and the code is honestly a
    little childish at best. In other words: It'll hopefully get better, but it
    might be a little limited right now.
@@ -52,13 +39,15 @@ Documentation
 Installation:
 -------------
 
+This doesn't actually work yet...
+
 ::
 
     pip install RedisORM
 
 For more information, a short quick start, and information about running the
 test suit, please `read the documentation
-<https://redisorm.readthedocs.org/en/latest/>`__ kindly hosted
+<https://pyredisorm.readthedocs.org/en/latest/>`__ kindly hosted
 on `readthedocs.org <http://readthedocs.org>`__
 
 Contributing
