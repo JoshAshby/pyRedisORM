@@ -242,6 +242,8 @@ class RedisModel(object):
     statements. It will give the id and a representation of the internal `_data`
     :py:class:`.RedisKeys` for debugging purposes.
     """
+    _data = None
+    key = None
     conn = None #: The redis connection which this should use.
     _protected_items = [] #: Object properties which shouldn't be stored in redis.
 
