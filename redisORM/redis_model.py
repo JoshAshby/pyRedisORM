@@ -37,6 +37,17 @@ or by using the dictionary index style:
 'Ludwig Van Beethoven'
 >>> sample1.era
 'Classical'
+>>> sample1.famous_works
+['Symphony No.5', 'Symphony No.7', 'Symphony No.9']
+
+You can also check for a property in the model:
+
+>>> "name" in sample1
+True
+>>> "age" in sample1
+False
+>>> "Symphony No.9" in sample1.famous_works
+True
 """
 
 redis = None
@@ -258,6 +269,9 @@ class RedisList(object):
     def __contains__(self, item):
         return item in self._list
 
+    def __eq__(self, other):
+        return self._list == other
+
 
 class RedisModel(object):
     """
@@ -286,12 +300,14 @@ class RedisModel(object):
             class instance, or on the module level.
         :param kwargs: Any additional data which should be stored. This is used
             for creating a new object in redis.
-        :raised RedisORMException: If no connection was supplied, or if there
+        :raised RedisORMException: If no connection or key was supplied, or if there
             was a problem while creating the :py:class:`.RedisKeys` instance for
             the interal `_data`
         """
         self.namespace = namespace or ""
-        self.key = key or ""
+        if not key:
+            raise RedisORMException("No key supplied.")
+        self.key = key
 
         self.conn = conn or redis
         if not self.conn:
