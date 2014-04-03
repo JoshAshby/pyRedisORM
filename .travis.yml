@@ -1,6 +1,5 @@
 language: python
 python:
-  - "2.6"
   - "2.7"
 
 services:
@@ -11,5 +10,9 @@ before_install:
 
 install:
   - pip install . --use-mirrors
+  - pip install coveralls
 
-script: nosetests
+script: coverage run --source=redisORM nosetests
+
+after_success:
+  coveralls

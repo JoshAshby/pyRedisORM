@@ -329,14 +329,11 @@ class RedisModel(object):
 
     def __delitem__(self, item):
         """
-        Deletes the given item from the objects _data dict, or if from the
-        objects namespace, if it does not exist in _data.
+        Deletes the given item from the objects _data dict.
         """
         keys = object.__getattribute__(self, "_data")
         if item in keys:
             del(keys[item])
-        else:
-            object.__delitem__(self, item)
 
     def __contains__(self, item):
         """
@@ -361,17 +358,6 @@ class RedisModel(object):
         items array.
         """
         return cls(id=id, **kwargs)
-
-    @classmethod
-    def create(cls, id=None, **kwargs):
-        """
-        Similar to new() however this calls save() on the object before
-        returning it, to ensure that it is already in the database.
-        Good for make and forget style calls.
-        """
-        what = cls(id=id, **kwargs)
-        what.save()
-        return what
 
     def delete(self):
         """

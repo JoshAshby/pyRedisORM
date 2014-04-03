@@ -8,6 +8,13 @@ Build status - Master:
         :target: http://travis-ci.org/JoshAshby/pyRedisORM
 
 
+Coverage - Master:
+
+
+.. image:: https://coveralls.io/repos/JoshAshby/pyRedisORM/badge.png
+        :target: https://coveralls.io/r/JoshAshby/pyRedisORM
+
+
 Build status - Dev:
 
 
