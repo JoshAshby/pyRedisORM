@@ -10,15 +10,9 @@ setup(
     name='RedisORM',
     version=version,
     description="Simple little ORM thing for Redis",
-    long_description="""\
-RedisORM provides a simple ORM, or what I like to call a: Key-Value to Grouped Object Mapper.
-Currently it just supports strings and lists but I plan on supporting more later on.
-
-* `Docs <https://pyredisorm.readthedocs.org/en/latest/>`_
-* `Bug tracker <https://github.com/JoshAshby/pyRedisORM/issues>`_
-* `Browse source code <https://github.com/JoshAshby/pyRedisORM/>`_
-""",
+    long_description=open("README.rst").read(),
     classifiers=[
+        "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 2.7",

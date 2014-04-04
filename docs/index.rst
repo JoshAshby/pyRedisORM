@@ -1,5 +1,5 @@
-RedisORM v0.1.0 - DEV
-=====================
+RedisORM v0.1.0
+===============
 
 .. image:: https://secure.travis-ci.org/JoshAshby/pyRedisORM.png?branch=master
         :target: http://travis-ci.org/JoshAshby/pyRedisORM
@@ -16,14 +16,13 @@ RedisORM v0.1.0 - DEV
     :alt: Number of PyPI downloads
 
 
-
 RedisORM is just a quick and simple little Key-Value group to Python Object
 mapper that makes it easier to have somewhat more complex structures in Redis.
-While a similar structure could be achived by using a Redis hash, this module
-also allows for lists and future support for Redis Sets and other data
-structures will come, making this more featureful then basic hashs.
+While a similar structure could be achieved by using a Redis hash, this module
+also allows for lists and future support for Redis data
+structures is hopefully planed, making this more helpful than basic hashs.
 
-There is a small test suite provided. It requires an actuall Redis install that
+There is a small test suite provided. It requires an actual Redis install that
 is up and running. If you want too change the address then please take a look
 in the test directory. The tests are automatically ran each commit,
 thanks to `travis-ci.org <http://travis-ci.org>`__ and coverage is provided by
@@ -31,8 +30,8 @@ thanks to `travis-ci.org <http://travis-ci.org>`__ and coverage is provided by
 is kindly hosted and automatically rebuilt by `readthedocs.org
 <http://readthedocs.org>`__.
 
-If you like the work I do and find this project helpful, please consider a
-small donation to help fund me and this project:
+If you find this project helpful and would like to make a small donation, I'm
+available on Gittip:
 
 .. raw:: html
 
@@ -42,17 +41,18 @@ small donation to help fund me and this project:
 
 A Few Minor Warnings
 --------------------
+#. This is a very early release, and although I've been using a large part of
+   this code for about a year now, things are still going to break and not
+   function well. Don't be afraid to submit a bug report or a patch on Github
+   to fix something.
 #. I'm only a second year university student, and software
    isn't even my major; I'm working towards an Electrical and Computer
    Engineering degree, so not only do I have limited time to keep this
    maintained, but I also probably won't write the best code ever.
-#. This is a very early release, things might break, and the code is honestly a
-   little childish at best. In other words: It'll hopefully get better, but it
-   might be a little limited right now.
 #. This project follows the semantic versioning specs. All Minor and
-   patch versions will not break the major versions API, however an bump of the
+   patch versions will not break the major versions API, however a bump of the
    major version signifies that backwards compatibility will most likely be
-   broken.
+   broken in some way.
 
 Quick start
 -----------

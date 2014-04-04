@@ -6,9 +6,10 @@ This module provides a basic object mapper for groups of Redis keys.
     The model stores all its data with a Redis key structure like so:
     namespace:key:part
 
-    Where namespace is the key prefix, key is the actual name or id of this
-    object and part is the specific part of the model which that whole key
-    stores.
+    Where:
+        #. namespace - the key prefix
+        #. key - the actual name or id of this object
+        #. part - the specific element of the model
 
 Basic use is like so:
 
