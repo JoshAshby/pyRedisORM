@@ -1,8 +1,6 @@
 RedisORM v0.1.0 - DEV
 =====================
 
-Build status - Master:
-
 .. image:: https://secure.travis-ci.org/JoshAshby/pyRedisORM.png?branch=master
         :target: http://travis-ci.org/JoshAshby/pyRedisORM
 
@@ -17,10 +15,13 @@ Build status - Master:
     :target: https://crate.io/packages/RedisORM/
     :alt: Number of PyPI downloads
 
-Build status - Dev:
 
-.. image:: https://secure.travis-ci.org/JoshAshby/pyRedisORM.png?branch=dev
-        :target: http://travis-ci.org/JoshAshby/pyRedisORM
+
+RedisORM is just a quick and simple little Key-Value group to Python Object
+mapper that makes it easier to have somewhat more complex structures in Redis.
+While a similar structure could be achived by using a Redis hash, this module
+also allows for lists and future support for Redis Sets and other data
+structures will come, making this more featureful then basic hashs.
 
 There is a small test suite provided. It requires an actuall Redis install that
 is up and running. If you want too change the address then please take a look
@@ -41,7 +42,6 @@ small donation to help fund me and this project:
 
 A Few Minor Warnings
 --------------------
-
 #. I'm only a second year university student, and software
    isn't even my major; I'm working towards an Electrical and Computer
    Engineering degree, so not only do I have limited time to keep this
@@ -61,7 +61,6 @@ Quick start
 
 Contributing
 ------------
-
 All code for this can be found online at
 `github <https://github.com/JoshAshby/pyRedisORM>`__.
 If something is broken, or a feature is missing, please submit a pull request
@@ -80,11 +79,16 @@ Documentation
 
 Exceptions
 ----------
+This library will only raise a subclass of :py:class:`.RedisORMException` if it
+encounters a problem.
 
 .. autoclass:: redisORM.redis_model.RedisORMException
 
 Model Class
 -----------
+Besides :py:class:`.RedisORMException`, this Model class should be the only
+other class you need to use in this library. It acts as a simple `dict` style
+object which will back all its data in Redis.
 
 .. autoclass:: redisORM.redis_model.RedisModel
     :members:
@@ -92,6 +96,11 @@ Model Class
 
 Helper Classes
 --------------
+These classes help make :py:class:`.RedisModel` function smoothly and allow for
+the easy addition of new Redis data structures. Most of the time you should
+have a need for these classes, although admittedly, the :py:class:`.RedisList`
+does come in handy once in a while for a `list` like object that backs its data
+in an actual Redis list.
 
 .. autoclass:: redisORM.redis_model.RedisList
     :members:
