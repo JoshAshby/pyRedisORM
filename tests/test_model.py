@@ -117,6 +117,13 @@ def test_none_attribute():
     eq_(a.ship, "")
 
 
+def test_model_get():
+    a = redis_model.RedisModel(namespace="test", key="test14")
+    a.name = "Dan"
+    eq_(a.get("Meyrl"), None)
+    eq_(a.get("James", "Fred"), "Fred")
+
+
 @raises(redis_model.RedisORMException)
 def test_no_key():
     redis_model.RedisModel(namespace="test")

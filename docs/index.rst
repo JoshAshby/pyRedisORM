@@ -1,4 +1,4 @@
-RedisORM v0.1.0
+RedisORM v0.2.0
 ===============
 
 .. image:: https://secure.travis-ci.org/JoshAshby/pyRedisORM.png?branch=master

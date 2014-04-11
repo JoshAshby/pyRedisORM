@@ -351,7 +351,7 @@ class RedisModel(object):
             returned, otherwise `default` is returned.
         :param default: The default to return if no match was found.
         """
-        return self._data.get(attr, default)
+        return self._data.get_default(attr, default)
 
     def _get(self, attr):
         pro_its = object.__getattribute__(self, "_protected_items")

@@ -1,1 +1,2 @@
+v0.2.0, 2014/04/10 -- Add get() method to model
 v0.1.0, 2014/04/2 -- Initial release.
