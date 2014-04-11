@@ -134,6 +134,16 @@ class RedisKeys(object):
         else:
             raise RedisORMException("Other types besides string and list are unsupported at this time.")
 
+    def get_default(self, part, default=None):
+        """
+        Works just like a `dict`'s `get()` method, returning the default if no
+        matching key was found.
+
+        :param part: The key which to look for
+        :param default: The default to return if no match was found
+        """
+        return self._data.get(part, default)
+
     def __repr__(self):
         return str(self._data)
 
@@ -331,6 +341,17 @@ class RedisModel(object):
         returned.
         """
         pass
+
+    def get(self, attr, default=None):
+        """
+        Acts like a `dict.get()` where it will return a default if no matching
+        value was found for the given key.
+
+        :param attr: The key to look for. If this is found then its value is
+            returned, otherwise `default` is returned.
+        :param default: The default to return if no match was found.
+        """
+        return self._data.get(attr, default)
 
     def _get(self, attr):
         pro_its = object.__getattribute__(self, "_protected_items")
